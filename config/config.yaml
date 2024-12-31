@@ -1,0 +1,46 @@
+data_providers:
+  yfinance:
+    enabled: true
+    cache_duration: 24h
+    rate_limit: 5
+  lmax:
+    enabled: false
+    api_key: YOUR_LMAX_API_KEY
+    environment: paper  # or 'live'
+    rate_limit: 10
+
+backtesting:
+  default_capital: 100000
+  commission: 0.001
+  slippage: 0.001
+  start_date: 2020-01-01
+  end_date: 2023-12-31
+
+risk_management:
+  max_drawdown: 0.2  # 20%
+  position_size_limit: 0.1  # 10% of portfolio
+  volatility_target: 0.15  # 15%
+  risk_measure: 'MV'  # Mean-Variance
+  rebalance_frequency: 'M'  # Monthly
+
+portfolio:
+  optimization_method: 'mean_variance'
+  transaction_cost: 0.001
+  max_leverage: 2.0
+  rebalance_threshold: 0.05  # 5%
+
+reporting:
+  output_dir: ./reports
+  save_trades: true
+  report_formats: ['pdf', 'csv']
+  metrics:
+    - sharpe_ratio
+    - max_drawdown
+    - annual_return
+    - win_rate
+
+logging:
+  level: INFO
+  file: ./logs/system.log
+  max_size: 10MB
+  backup_count: 5
